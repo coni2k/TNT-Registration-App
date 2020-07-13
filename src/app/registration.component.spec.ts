@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -27,6 +27,7 @@ describe('RegistrationComponent', () => {
         MatInputModule,
       ],
       declarations: [RegistrationComponent],
+      providers: [FormBuilder],
     })
       .compileComponents()
       .then(() => {
@@ -45,17 +46,25 @@ describe('RegistrationComponent', () => {
     const input = fixture.nativeElement.querySelector('#firstName');
     const event = createNewEvent('input');
 
-    input.value = 'Red';
+    input.value = 'Serkan';
     input.dispatchEvent(event);
 
-    expect(component.firstName.value).toEqual('Red');
+    expect(component.registrationForm.value).toEqual({
+      firstName: 'Serkan',
+      lastName: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+    });
   });
 
   it('should update the value in the control', () => {
-    component.firstName.setValue('Blue');
+    component.registrationForm.patchValue({
+      firstName: 'Serkan',
+    });
 
     const input = fixture.nativeElement.querySelector('#firstName');
 
-    expect(input.value).toBe('Blue');
+    expect(input.value).toBe('Serkan');
   });
 });

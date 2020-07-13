@@ -1,4 +1,5 @@
 import { async, TestBed } from '@angular/core/testing';
+import { FormBuilder } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './registration.component';
@@ -8,6 +9,7 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [AppComponent, RegistrationComponent],
+      providers: [FormBuilder],
     }).compileComponents();
   }));
 

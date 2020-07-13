@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-registration',
@@ -7,9 +7,17 @@ import { FormControl } from '@angular/forms';
   templateUrl: './registration.component.html',
 })
 export class RegistrationComponent {
-  firstName = new FormControl();
-  lastName = new FormControl();
-  email = new FormControl();
-  password = new FormControl();
-  confirmPassword = new FormControl();
+  registrationForm = this.fb.group({
+    firstName: [''],
+    lastName: [''],
+    email: [''],
+    password: [''],
+    confirmPassword: [''],
+  });
+
+  constructor(private fb: FormBuilder) {}
+
+  submit(): void {
+    console.log('vada', this.registrationForm.value);
+  }
 }
