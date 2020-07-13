@@ -32,9 +32,14 @@
     height: 60px;
     display: flex;
     align-items: center;
-    background-color: #1976d2;
-    color: white;
     font-weight: 600;
+    color: #fd5000;
+    border-bottom: 2px solid #fd5000;
+
+    img {
+      height: 40px;
+      width: 111px;
+    }
   }
 
   .toolbar img {
