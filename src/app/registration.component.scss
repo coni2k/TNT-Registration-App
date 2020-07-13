@@ -1,6 +1,22 @@
 :host {
-  .form-container {
+  margin-top: 24px;
+  width: 50%;
+
+  form {
     display: flex;
     flex-direction: column;
+
+    .password-field {
+      margin-bottom: 30px;
+
+      .mat-hint {
+        font-size: 0.8em;
+
+        ul {
+          margin: 0;
+          padding: 0 0 0 16px;
+        }
+      }
+    }
   }
 }

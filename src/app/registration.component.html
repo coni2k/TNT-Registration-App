@@ -1,29 +1,38 @@
 <h2>Registration</h2>
 
+<p>Status: {{ registrationForm.status }}</p>
+
 <form class="form-container" [formGroup]="registrationForm" (ngSubmit)="submit()">
   <mat-form-field>
     <mat-label>First name</mat-label>
-    <input id="firstName" matInput formControlName="firstName" />
+    <input id="firstName" matInput formControlName="firstName" required />
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Last name</mat-label>
-    <input matInput formControlName="lastName" />
+    <input matInput formControlName="lastName" required />
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>E-mail</mat-label>
-    <input matInput formControlName="email" />
+    <input type="email" matInput formControlName="email" required />
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field class="password-field">
     <mat-label>Password</mat-label>
-    <input type="password" matInput formControlName="password" />
+    <input type="password" matInput formControlName="password" required />
+    <mat-hint>
+      <ul>
+        <li>Should be a minimum of eight characters</li>
+        <li>Should contain lower and uppercase letters</li>
+        <li>Should not contain user’s first or last name</li>
+      </ul>
+    </mat-hint>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Confirm password</mat-label>
-    <input type="password" matInput formControlName="confirmPassword" />
+    <input type="password" matInput formControlName="confirmPassword" required />
   </mat-form-field>
 
   <button mat-button color="primary" type="submit" [disabled]="!registrationForm.valid">

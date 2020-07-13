@@ -49,6 +49,8 @@ describe('RegistrationComponent', () => {
     input.value = 'Serkan';
     input.dispatchEvent(event);
 
+    expect(component.registrationForm.get('firstName').value).toEqual('Serkan');
+
     expect(component.registrationForm.value).toEqual({
       firstName: 'Serkan',
       lastName: '',
