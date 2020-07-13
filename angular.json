@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "TNT-Login-App": {
+    "TNT-Registration-App": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/TNT-Login-App",
+            "outputPath": "dist/TNT-Registration-App",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -61,18 +61,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "TNT-Login-App:build"
+            "browserTarget": "TNT-Registration-App:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "TNT-Login-App:build:production"
+              "browserTarget": "TNT-Registration-App:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "TNT-Login-App:build"
+            "browserTarget": "TNT-Registration-App:build"
           }
         },
         "test": {
@@ -98,16 +98,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "TNT-Login-App:serve"
+            "devServerTarget": "TNT-Registration-App:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "TNT-Login-App:serve:production"
+              "devServerTarget": "TNT-Registration-App:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "TNT-Login-App"
+  "defaultProject": "TNT-Registration-App",
+  "cli": {
+    "analytics": "805c418a-4d09-407b-9033-20c61a7e653d"
+  }
 }
