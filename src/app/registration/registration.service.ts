@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, timer } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -19,21 +18,6 @@ export class RegistrationService {
       password,
     };
 
-    console.log('url', url);
-    console.log('body', body);
-
-    // return this.httpClient.post(url, body).pipe(
-    //   tap((result) => {
-    //     console.log('r', result);
-    //   })
-    // );
-    // return of(null);
-
-    return timer(4000).pipe(
-      map(() => {
-        console.log('ok..');
-        return null;
-      })
-    );
+    return this.httpClient.post(url, body);
   }
 }

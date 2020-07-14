@@ -6,8 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '../app-routing.module';
-import { RegistrationService } from '../registration.service';
 import { RegistrationComponent } from './registration.component';
+import { RegistrationService } from './registration.service';
 
 describe('RegistrationComponent', () => {
   let component: RegistrationComponent;
