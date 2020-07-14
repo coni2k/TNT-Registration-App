@@ -72,7 +72,7 @@
     <mat-label>Confirm password</mat-label>
     <input type="password" matInput formControlName="confirmPassword" required />
     <mat-error *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)">
-      Password must meet the criteria
+      Passwords must be the same
     </mat-error>
   </mat-form-field>
 
