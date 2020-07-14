@@ -68,7 +68,10 @@
     </mat-error>
   </mat-form-field>
 
-  <button mat-button color="primary" type="submit" [disabled]="!registrationForm.valid">
-    Register
+  <button mat-button color="primary" class="" type="submit" [disabled]="!registrationForm.valid || submitting">
+    <div class="submit-content">
+      <span>Register</span>
+      <mat-spinner *ngIf="true" [diameter]="24"></mat-spinner>
+    </div>
   </button>
 </form>

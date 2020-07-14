@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, timer } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +27,13 @@ export class RegistrationService {
     //     console.log('r', result);
     //   })
     // );
-    return of(null);
+    // return of(null);
+
+    return timer(4000).pipe(
+      map(() => {
+        console.log('ok..');
+        return null;
+      })
+    );
   }
 }
