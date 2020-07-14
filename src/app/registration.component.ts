@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { passwordExtendedValidator } from './password-extended-validator';
 import { passwordValidator } from './password-validator';
 
 @Component({
@@ -8,13 +9,16 @@ import { passwordValidator } from './password-validator';
   templateUrl: './registration.component.html',
 })
 export class RegistrationComponent {
-  registrationForm = this.fb.group({
-    firstName: ['', [Validators.required, Validators.maxLength(256)]],
-    lastName: ['', [Validators.required, Validators.maxLength(256)]],
-    email: ['', [Validators.required, Validators.maxLength(256), Validators.email]],
-    password: ['', [passwordValidator()]],
-    confirmPassword: ['', Validators.required],
-  });
+  registrationForm = this.fb.group(
+    {
+      firstName: ['', [Validators.required, Validators.maxLength(256)]],
+      lastName: ['', [Validators.required, Validators.maxLength(256)]],
+      email: ['', [Validators.required, Validators.maxLength(256), Validators.email]],
+      password: ['', [passwordValidator()]],
+      confirmPassword: ['', Validators.required],
+    },
+    { validators: passwordExtendedValidator }
+  );
 
   get email(): AbstractControl {
     return this.registrationForm.get('email');
