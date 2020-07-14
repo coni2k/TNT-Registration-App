@@ -18,10 +18,16 @@ export const passwordExtendedValidator: ValidatorFn = (group: FormGroup): Valida
   const firstName = (firstNameControl.value || '') as string;
   const lastName = (lastNameControl.value || '') as string;
   const password = (passwordControl.value || '') as string;
+  const passwordErrors = passwordControl.errors;
 
   if (password.indexOf(firstName) > -1 || password.indexOf(lastName) > -1) {
+    passwordErrors.strongPassword = true;
+    passwordControl.setErrors(passwordErrors);
     return { weakPassword: true };
   }
+
+  delete passwordErrors.strongPassword;
+  passwordControl.setErrors(passwordErrors);
 
   return null;
 };
@@ -43,5 +49,14 @@ export const comparePasswordsValidator: ValidatorFn = (group: FormGroup): Valida
   const password = (passwordControl.value || '') as string;
   const confirmPassword = (confirmPasswordControl.value || '') as string;
 
-  return password === confirmPassword ? null : { comparePasswords: true };
+  if (password !== confirmPassword) {
+    confirmPasswordControl.setErrors({
+      comparePasswords: true,
+    });
+
+    return { comparePasswords: true };
+  }
+
+  confirmPasswordControl.setErrors(null);
+  return null;
 };

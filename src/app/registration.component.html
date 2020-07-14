@@ -1,15 +1,15 @@
 <h2>Registration</h2>
 
 <!-- TODO 👇 -->
-<p>
+<p style="font-size: 1em; line-height: 1em;">
   Status: {{ registrationForm.status }}<br />
   errors: {{ registrationForm.errors | json }}<br />
   dirty/touched: {{ registrationForm.dirty | json }}/{{ registrationForm.touched | json }}<br />
-  confirm: {{ registrationForm.errors?.comparePasswords }}
-</p>
-
-<p *ngIf="registrationForm.errors?.comparePasswords">
-  vadaa!
+  pass invalid: {{ password.invalid }}<br />
+  pass regex: {{ password.errors?.regex | json }}<br />
+  pass strong: {{ password.errors?.strongPassword }}<br />
+  confirm invalid: {{ confirmPassword.invalid }}<br />
+  confirm validator:{{ confirmPassword.errors?.comparePasswords }}
 </p>
 
 <form class="form-container" [formGroup]="registrationForm" (ngSubmit)="submit()">
@@ -71,8 +71,8 @@
   <mat-form-field>
     <mat-label>Confirm password</mat-label>
     <input type="password" matInput formControlName="confirmPassword" required />
-    <mat-error *ngIf="true">
-      Passwords must be the same
+    <mat-error *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)">
+      Password must meet the criteria
     </mat-error>
   </mat-form-field>
 

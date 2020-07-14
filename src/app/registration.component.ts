@@ -20,6 +20,10 @@ export class RegistrationComponent {
     { validators: [passwordExtendedValidator, comparePasswordsValidator] }
   );
 
+  get confirmPassword(): AbstractControl {
+    return this.registrationForm.get('confirmPassword');
+  }
+
   get email(): AbstractControl {
     return this.registrationForm.get('email');
   }
