@@ -7,6 +7,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './registration.component';
+import { RegistrationService } from './registration.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -21,7 +22,13 @@ describe('AppComponent', () => {
         MatInputModule,
       ],
       declarations: [AppComponent, RegistrationComponent],
-      providers: [FormBuilder],
+      providers: [
+        FormBuilder,
+        {
+          provide: RegistrationService,
+          useValue: {},
+        },
+      ],
     }).compileComponents();
   }));
 

@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RegistrationComponent } from './registration.component';
+import { RegistrationService } from './registration.service';
 
 export function createNewEvent(eventName: string, bubbles = false, cancelable = false) {
   const evt = document.createEvent('CustomEvent');
@@ -27,7 +28,13 @@ describe('RegistrationComponent', () => {
         MatInputModule,
       ],
       declarations: [RegistrationComponent],
-      providers: [FormBuilder],
+      providers: [
+        FormBuilder,
+        {
+          provide: RegistrationService,
+          useValue: {},
+        },
+      ],
     })
       .compileComponents()
       .then(() => {

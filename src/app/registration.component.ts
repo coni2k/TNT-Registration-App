@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { catchError, tap } from 'rxjs/operators';
 import { comparePasswordsValidator, passwordGroupValidators } from './password-group-validators';
 import { passwordValidator } from './password-validator';
+import { RegistrationService } from './registration.service';
 
 @Component({
   selector: 'app-registration',
@@ -40,9 +42,19 @@ export class RegistrationComponent {
     return this.registrationForm.get('password');
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private registrationService: RegistrationService) {}
 
   submit(): void {
-    console.log('vada', this.registrationForm.value);
+    this.registrationService
+      .register(this.firstName.value, this.lastName.value, this.email.value, this.password.value)
+      .pipe(
+        tap((response) => {
+          console.log('response', response);
+        }),
+        catchError((err) => {
+          return err;
+        })
+      )
+      .subscribe();
   }
 }
