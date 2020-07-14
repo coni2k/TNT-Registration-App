@@ -9,17 +9,16 @@
     flex-direction: column;
     width: 35%;
 
-    .password-field {
-      margin-bottom: 30px;
+    .mat-form-field {
+      margin-bottom: 8px;
+    }
 
-      .mat-hint {
-        font-size: 0.8em;
-
-        ul {
-          margin: 0;
-          padding: 0 0 0 16px;
-        }
-      }
+    .password-hint {
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 0.8em;
+      margin-top: 0;
+      margin-bottom: 8px;
+      padding: 0 0 0 16px;
     }
   }
 

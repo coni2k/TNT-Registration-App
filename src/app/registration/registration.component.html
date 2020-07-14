@@ -1,5 +1,3 @@
-<h2>Registration</h2>
-
 <p>
   Please enter your details
 </p>
@@ -50,15 +48,13 @@
     <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
       Password must meet the criteria
     </mat-error>
-    <mat-hint>
-      <ul>
-        <li>Should be a min. of 8 and max. of 64 characters</li>
-        <li>Should contain lower and uppercase letters</li>
-        <li>Should not contain your first or last name</li>
-        <li>Only following special characters are allowed: @$!%*?&</li>
-      </ul>
-    </mat-hint>
   </mat-form-field>
+  <ul class="password-hint">
+    <li>Should be a min. of 8 and max. of 64 characters</li>
+    <li>Should contain lower and uppercase letters</li>
+    <li>Should not contain your first or last name</li>
+    <li>Only following special characters are allowed: @$!%*?&</li>
+  </ul>
 
   <mat-form-field>
     <mat-label>Confirm password</mat-label>
