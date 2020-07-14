@@ -1,6 +1,6 @@
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 
-export function passwordValidator(forbidden: string[] = []): ValidatorFn {
+export function passwordValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     // Validations
     if (!control) {
@@ -15,19 +15,6 @@ export function passwordValidator(forbidden: string[] = []): ValidatorFn {
       return {
         required: { value: control.value },
       };
-    }
-
-    // Forbidden words
-    forbidden = forbidden || [];
-    console.log('w', forbidden);
-    for (const word of forbidden) {
-      if (value.indexOf(word) > -1) {
-        return {
-          forbidden: {
-            value: control.value,
-          },
-        };
-      }
     }
 
     // Base regex: ^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$

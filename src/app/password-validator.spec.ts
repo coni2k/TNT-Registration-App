@@ -13,12 +13,6 @@ describe('passwordValidator', () => {
     expect(validator(control)).toEqual({ required: { value: control.value } });
   });
 
-  it(`should return "forbidden" validation error if the value contains one of the "forbidden words"`, () => {
-    const validator = passwordValidator(['bob']);
-    const control = new FormControl('12345bob');
-    expect(validator(control)).toEqual({ forbidden: { value: control.value } });
-  });
-
   it(`should return "regex" validation error if the value doesn't meet the criteria`, () => {
     const validator = passwordValidator();
     const control = new FormControl();
