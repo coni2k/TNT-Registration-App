@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { catchError, finalize, tap } from 'rxjs/operators';
 import { RegistrationService } from '../registration.service';
@@ -44,7 +45,12 @@ export class RegistrationComponent {
     return this.registrationForm.get('password');
   }
 
-  constructor(private fb: FormBuilder, private registrationService: RegistrationService, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private registrationService: RegistrationService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
   submit(): void {
     this.submitting = true;
@@ -56,7 +62,9 @@ export class RegistrationComponent {
           this.router.navigate(['completed']);
         }),
         catchError((err) => {
-          // TODO Something went wrong?
+          this.snackBar.open('Something went wrong, please try again!', 'Dismiss', {
+            duration: 5000,
+          });
           return err;
         }),
         finalize(() => {

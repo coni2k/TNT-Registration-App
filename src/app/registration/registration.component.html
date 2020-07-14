@@ -71,7 +71,7 @@
   <button mat-button color="primary" class="" type="submit" [disabled]="!registrationForm.valid || submitting">
     <div class="submit-content">
       <span>Register</span>
-      <mat-spinner *ngIf="true" [diameter]="24"></mat-spinner>
+      <mat-spinner *ngIf="submitting" [diameter]="24"></mat-spinner>
     </div>
   </button>
 </form>

@@ -3,16 +3,11 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '../app-routing.module';
 import { RegistrationService } from '../registration.service';
 import { RegistrationComponent } from './registration.component';
-
-export function createNewEvent(eventName: string, bubbles = false, cancelable = false) {
-  const evt = document.createEvent('CustomEvent');
-  evt.initCustomEvent(eventName, bubbles, cancelable, null);
-  return evt;
-}
 
 describe('RegistrationComponent', () => {
   let component: RegistrationComponent;
@@ -27,6 +22,7 @@ describe('RegistrationComponent', () => {
         MatButtonModule,
         MatFormFieldModule,
         MatInputModule,
+        MatSnackBarModule,
         AppRoutingModule,
       ],
       declarations: [RegistrationComponent],
@@ -50,31 +46,5 @@ describe('RegistrationComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should update the value of the input field', () => {
-    const input = fixture.nativeElement.querySelector('#firstName');
-    const event = createNewEvent('input');
-
-    input.value = 'Serkan';
-    input.dispatchEvent(event);
-
-    expect(component.registrationForm.get('firstName').value).toEqual('Serkan');
-
-    expect(component.registrationForm.value).toEqual({
-      firstName: 'Serkan',
-      lastName: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
-    });
-  });
-
-  it('should update the value in the control', () => {
-    component.registrationForm.patchValue({
-      firstName: 'Serkan',
-    });
-
-    const input = fixture.nativeElement.querySelector('#firstName');
-
-    expect(input.value).toBe('Serkan');
-  });
+  // TODO Form validation & submit tests
 });
