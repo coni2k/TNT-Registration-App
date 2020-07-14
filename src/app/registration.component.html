@@ -46,18 +46,14 @@
     <mat-label>Password</mat-label>
     <input type="password" matInput formControlName="password" required />
     <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
-      <div *ngIf="password.errors.required">
-        Password is required
-      </div>
-      <div *ngIf="password.errors.forbiddenName">
-        Password must meet the criteria
-      </div>
+      Password must meet the criteria
     </mat-error>
     <mat-hint>
       <ul>
-        <li>Should be a minimum of eight characters</li>
+        <li>Should be a minimum of 8 and maximum of 64 characters</li>
         <li>Should contain lower and uppercase letters</li>
         <li>Should not contain user’s first or last name</li>
+        <li>Can only contain the following special characters: @$!%*?&</li>
       </ul>
     </mat-hint>
   </mat-form-field>

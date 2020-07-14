@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
-import { forbiddenNameValidator } from './password-validator';
+import { passwordValidator } from './password-validator';
 
 @Component({
   selector: 'app-registration',
@@ -9,10 +9,10 @@ import { forbiddenNameValidator } from './password-validator';
 })
 export class RegistrationComponent {
   registrationForm = this.fb.group({
-    firstName: ['', [Validators.required, Validators.maxLength(255)]],
-    lastName: ['', [Validators.required, Validators.maxLength(255)]],
-    email: ['', [Validators.required, Validators.maxLength(255), Validators.email]],
-    password: ['', [Validators.required, forbiddenNameValidator(/bob/i)]],
+    firstName: ['', [Validators.required, Validators.maxLength(256)]],
+    lastName: ['', [Validators.required, Validators.maxLength(256)]],
+    email: ['', [Validators.required, Validators.maxLength(256), Validators.email]],
+    password: ['', [passwordValidator()]],
     confirmPassword: ['', Validators.required],
   });
 

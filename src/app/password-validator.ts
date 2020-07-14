@@ -1,9 +1,45 @@
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 
-/** A hero's name can't match the given regular expression */
-export function forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
+export function passwordValidator(forbidden: string[] = []): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
-    const forbidden = nameRe.test(control.value);
-    return forbidden ? { forbiddenName: { value: control.value } } : null;
+    // Validations
+    if (!control) {
+      throw new Error('control cannot be null');
+    }
+
+    // Default value
+    const value = (control.value || '') as string;
+
+    // Required validation
+    if (value === '') {
+      return {
+        required: { value: control.value },
+      };
+    }
+
+    // Forbidden words
+    forbidden = forbidden || [];
+    console.log('w', forbidden);
+    for (const word of forbidden) {
+      if (value.indexOf(word) > -1) {
+        return {
+          forbidden: {
+            value: control.value,
+          },
+        };
+      }
+    }
+
+    // Base regex: ^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$
+    // https://stackoverflow.com/a/21456918/1087768
+    const regex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])[A-Za-z\\d@$!%*?&]{8,64}$');
+    const result = regex.test(control.value);
+
+    if (!result) {
+      return { regex: { value: control.value } };
+    }
+
+    // Good to go 👍
+    return null;
   };
 }
