@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError, tap } from 'rxjs/operators';
-import { comparePasswordsValidator, passwordGroupValidators } from '../password-group-validators';
-import { passwordValidator } from '../password-validator';
 import { RegistrationService } from '../registration.service';
+import { comparePasswordsValidator, passwordGroupValidators } from '../validators/password-group-validators';
+import { passwordValidator } from '../validators/password-validator';
 
 @Component({
   selector: 'app-registration',
