@@ -4,9 +4,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from '../app-routing.module';
+import { RegistrationService } from '../registration.service';
 import { RegistrationComponent } from './registration.component';
-import { RegistrationService } from './registration.service';
 
 export function createNewEvent(eventName: string, bubbles = false, cancelable = false) {
   const evt = document.createEvent('CustomEvent');

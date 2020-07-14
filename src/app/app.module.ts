@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegistrationCompletedComponent } from './registration-completed/registration-completed.component';
-import { RegistrationComponent } from './registration.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   bootstrap: [AppComponent],
