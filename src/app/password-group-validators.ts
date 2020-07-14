@@ -1,6 +1,6 @@
 import { FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
 
-export const passwordExtendedValidator: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
+export const passwordGroupValidators: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
   // Validations
   if (!group) {
     throw new Error('group cannot be null');
@@ -21,12 +21,16 @@ export const passwordExtendedValidator: ValidatorFn = (group: FormGroup): Valida
   const passwordErrors = passwordControl.errors;
 
   if (password.indexOf(firstName) > -1 || password.indexOf(lastName) > -1) {
-    passwordErrors.strongPassword = true;
+    if (passwordErrors) {
+      passwordErrors.strongPassword = true;
+    }
     passwordControl.setErrors(passwordErrors);
-    return { weakPassword: true };
+    return { strongPassword: true };
   }
 
-  delete passwordErrors.strongPassword;
+  if (passwordErrors) {
+    delete passwordErrors.strongPassword;
+  }
   passwordControl.setErrors(passwordErrors);
 
   return null;

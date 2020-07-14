@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
-import { comparePasswordsValidator, passwordExtendedValidator } from './password-extended-validator';
+import { comparePasswordsValidator, passwordGroupValidators } from './password-group-validators';
 import { passwordValidator } from './password-validator';
 
 @Component({
@@ -17,7 +17,7 @@ export class RegistrationComponent {
       password: ['', [passwordValidator()]],
       confirmPassword: ['', Validators.required],
     },
-    { validators: [passwordExtendedValidator, comparePasswordsValidator] }
+    { validators: [passwordGroupValidators, comparePasswordsValidator] }
   );
 
   get confirmPassword(): AbstractControl {
