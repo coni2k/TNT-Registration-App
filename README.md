@@ -1,27 +1,30 @@
-# TNTRegistrationApp
+# TNT Registration App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.2.
+This project is a part a technical test of TNT job interview.
 
-## Development server
+[Technical spec file](https://github.com/coni2k/TNT-Registration-App/blob/master/docs/Web-Coding-Challenge.pdf)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Stack
 
-## Code scaffolding
+- Latest node version: 12.16.3
+- Latest npm version: 6.14.5
+- Angular CLI: 10.0.2
+- Typescript: 3.8.3
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Setup
 
-## Build
+- Download or clone the project: `git clone https://github.com/coni2k/TNT-Registration-App.git`
+- Install npm dependencies: `npm i`
+- Run the application: `npm start`
+- Open the application in your browser: http://localhost:4200
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Test & Build
 
-## Running unit tests
+You can use the following commands to test and build the application:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+- `npm test`
+- `ng build --prod`
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+If you have any question about the project, please feel free to contact me on [Twitter](https://twitter.com/coni2k) or [LinkedIn](https://www.linkedin.com/in/serkanholat/)
