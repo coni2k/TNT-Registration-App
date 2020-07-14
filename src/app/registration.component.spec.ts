@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
 import { RegistrationComponent } from './registration.component';
 import { RegistrationService } from './registration.service';
 
@@ -26,6 +27,7 @@ describe('RegistrationComponent', () => {
         MatButtonModule,
         MatFormFieldModule,
         MatInputModule,
+        AppRoutingModule,
       ],
       declarations: [RegistrationComponent],
       providers: [
@@ -40,7 +42,6 @@ describe('RegistrationComponent', () => {
       .then(() => {
         fixture = TestBed.createComponent(RegistrationComponent);
         component = fixture.componentInstance;
-        // component.ngOnInit();
         fixture.detectChanges();
       });
   }));

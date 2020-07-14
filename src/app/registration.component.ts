@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { catchError, tap } from 'rxjs/operators';
 import { comparePasswordsValidator, passwordGroupValidators } from './password-group-validators';
 import { passwordValidator } from './password-validator';
@@ -42,7 +43,7 @@ export class RegistrationComponent {
     return this.registrationForm.get('password');
   }
 
-  constructor(private fb: FormBuilder, private registrationService: RegistrationService) {}
+  constructor(private fb: FormBuilder, private registrationService: RegistrationService, private router: Router) {}
 
   submit(): void {
     this.registrationService
@@ -50,8 +51,10 @@ export class RegistrationComponent {
       .pipe(
         tap((response) => {
           console.log('response', response);
+          this.router.navigate(['completed']);
         }),
         catchError((err) => {
+          // TODO Something went wrong?
           return err;
         })
       )

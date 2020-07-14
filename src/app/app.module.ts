@@ -8,11 +8,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { RegistrationCompletedComponent } from './registration-completed/registration-completed.component';
 import { RegistrationComponent } from './registration.component';
 
 @NgModule({
   bootstrap: [AppComponent],
-  declarations: [AppComponent, RegistrationComponent],
+  declarations: [AppComponent, RegistrationComponent, RegistrationCompletedComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
