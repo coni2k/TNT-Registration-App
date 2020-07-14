@@ -43,5 +43,5 @@ export const comparePasswordsValidator: ValidatorFn = (group: FormGroup): Valida
   const password = (passwordControl.value || '') as string;
   const confirmPassword = (confirmPasswordControl.value || '') as string;
 
-  return password === confirmPassword ? null : { comparePasswords: false };
+  return password === confirmPassword ? null : { comparePasswords: true };
 };

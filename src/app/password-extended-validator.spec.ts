@@ -88,7 +88,7 @@ describe('password group validators', () => {
       });
 
       const result = comparePasswordsValidator(group);
-      expect(result).toEqual({ comparePasswords: false });
+      expect(result).toEqual({ comparePasswords: true });
     });
 
     it(`should return null if passwords match`, () => {

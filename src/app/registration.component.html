@@ -2,7 +2,12 @@
 
 <!-- TODO 👇 -->
 <p>Status: {{ registrationForm.status }}</p>
-f: {{ registrationForm.errors | json }}
+f: {{ registrationForm.errors | json }} t: {{ registrationForm.dirty | json }} d:
+{{ registrationForm.touched | json }} x: {{ registrationForm.errors?.comparePasswords }}
+
+<p *ngIf="registrationForm.errors?.comparePasswords">
+  vadaa!
+</p>
 
 <form class="form-container" [formGroup]="registrationForm" (ngSubmit)="submit()">
   <mat-form-field>
@@ -62,7 +67,10 @@ f: {{ registrationForm.errors | json }}
 
   <mat-form-field>
     <mat-label>Confirm password</mat-label>
-    <input type="password" matInput formControlName="confirmPassword" required />
+    <input type="password" matInput formControlName="confirmPassword" />
+    <mat-error *ngIf="true">
+      Passwords must be the same
+    </mat-error>
   </mat-form-field>
 
   <button mat-button color="primary" type="submit" [disabled]="!registrationForm.valid">
