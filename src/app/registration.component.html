@@ -1,9 +1,12 @@
 <h2>Registration</h2>
 
 <!-- TODO 👇 -->
-<p>Status: {{ registrationForm.status }}</p>
-f: {{ registrationForm.errors | json }} t: {{ registrationForm.dirty | json }} d:
-{{ registrationForm.touched | json }} x: {{ registrationForm.errors?.comparePasswords }}
+<p>
+  Status: {{ registrationForm.status }}<br />
+  errors: {{ registrationForm.errors | json }}<br />
+  dirty/touched: {{ registrationForm.dirty | json }}/{{ registrationForm.touched | json }}<br />
+  confirm: {{ registrationForm.errors?.comparePasswords }}
+</p>
 
 <p *ngIf="registrationForm.errors?.comparePasswords">
   vadaa!
@@ -67,7 +70,7 @@ f: {{ registrationForm.errors | json }} t: {{ registrationForm.dirty | json }} d
 
   <mat-form-field>
     <mat-label>Confirm password</mat-label>
-    <input type="password" matInput formControlName="confirmPassword" />
+    <input type="password" matInput formControlName="confirmPassword" required />
     <mat-error *ngIf="true">
       Passwords must be the same
     </mat-error>
