@@ -1,6 +1,6 @@
 # TNT Registration App
 
-This project is a part a technical test of TNT job interview.
+This project is a part of a technical test for TNT job interview
 
 [Technical spec file](https://github.com/coni2k/TNT-Registration-App/blob/master/docs/Web-Coding-Challenge.pdf)
 
