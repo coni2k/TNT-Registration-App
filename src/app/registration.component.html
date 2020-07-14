@@ -1,15 +1,7 @@
 <h2>Registration</h2>
 
-<!-- TODO 👇 -->
-<p style="font-size: 1em; line-height: 1em;">
-  Status: {{ registrationForm.status }}<br />
-  errors: {{ registrationForm.errors | json }}<br />
-  dirty/touched: {{ registrationForm.dirty | json }}/{{ registrationForm.touched | json }}<br />
-  pass invalid: {{ password.invalid }}<br />
-  pass regex: {{ password.errors?.regex | json }}<br />
-  pass strong: {{ password.errors?.strongPassword }}<br />
-  confirm invalid: {{ confirmPassword.invalid }}<br />
-  confirm validator:{{ confirmPassword.errors?.comparePasswords }}
+<p>
+  Please enter your details
 </p>
 
 <form class="form-container" [formGroup]="registrationForm" (ngSubmit)="submit()">
@@ -60,10 +52,10 @@
     </mat-error>
     <mat-hint>
       <ul>
-        <li>Should be a minimum of 8 and maximum of 64 characters</li>
+        <li>Should be a min. of 8 and max. of 64 characters</li>
         <li>Should contain lower and uppercase letters</li>
         <li>Should not contain your first or last name</li>
-        <li>Can only contain the following special characters: @$!%*?&</li>
+        <li>Only following special characters are allowed: @$!%*?&</li>
       </ul>
     </mat-hint>
   </mat-form-field>
