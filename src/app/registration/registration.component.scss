@@ -1,13 +1,10 @@
 :host {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  margin-top: 24px;
+  width: 40%;
 
   form {
     display: flex;
     flex-direction: column;
-    width: 35%;
 
     .mat-form-field {
       margin-bottom: 8px;

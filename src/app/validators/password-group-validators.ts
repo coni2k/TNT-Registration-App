@@ -18,21 +18,34 @@ export const passwordGroupValidators: ValidatorFn = (group: FormGroup): Validati
   const firstName = (firstNameControl.value || '') as string;
   const lastName = (lastNameControl.value || '') as string;
   const password = (passwordControl.value || '') as string;
-  const passwordErrors = passwordControl.errors;
+  let passwordErrors = passwordControl.errors;
 
   if (password.indexOf(firstName) > -1 || password.indexOf(lastName) > -1) {
+    // Set an error for password control
     if (passwordErrors) {
       passwordErrors.strongPassword = true;
+    } else {
+      passwordErrors = {
+        strongPassword: true,
+      };
     }
     passwordControl.setErrors(passwordErrors);
+
+    // Return an error for the form
     return { strongPassword: true };
   }
 
+  // Clear the error from password control
   if (passwordErrors) {
     delete passwordErrors.strongPassword;
+
+    if (Object.keys(passwordErrors).length === 0) {
+      passwordErrors = null;
+    }
   }
   passwordControl.setErrors(passwordErrors);
 
+  // Return no errors for the form
   return null;
 };
 
