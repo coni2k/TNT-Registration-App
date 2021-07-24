@@ -1,18 +1,12 @@
-<p>
-  Please enter your details
-</p>
+<p>Please enter your details to create an account</p>
 
 <form class="form-container" [formGroup]="registrationForm" (ngSubmit)="submit()">
   <mat-form-field>
     <mat-label>First name</mat-label>
     <input id="firstName" matInput formControlName="firstName" required />
     <mat-error *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
-      <div *ngIf="firstName.errors.required">
-        First name is required
-      </div>
-      <div *ngIf="firstName.errors.maxlength">
-        First name must be maximum 256 characters long
-      </div>
+      <div *ngIf="firstName.errors.required">First name is required</div>
+      <div *ngIf="firstName.errors.maxlength">First name must be maximum 256 characters long</div>
     </mat-error>
   </mat-form-field>
 
@@ -20,12 +14,8 @@
     <mat-label>Last name</mat-label>
     <input matInput formControlName="lastName" required />
     <mat-error *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
-      <div *ngIf="lastName.errors.required">
-        Last name is required
-      </div>
-      <div *ngIf="lastName.errors.maxlength">
-        Last name must be maximum 256 characters long
-      </div>
+      <div *ngIf="lastName.errors.required">Last name is required</div>
+      <div *ngIf="lastName.errors.maxlength">Last name must be maximum 256 characters long</div>
     </mat-error>
   </mat-form-field>
 
@@ -33,12 +23,8 @@
     <mat-label>E-mail</mat-label>
     <input type="email" matInput formControlName="email" required />
     <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
-      <div *ngIf="email.errors.required">
-        Email is required
-      </div>
-      <div *ngIf="email.errors.email">
-        Enter a valid e-mail address
-      </div>
+      <div *ngIf="email.errors.required">Email is required</div>
+      <div *ngIf="email.errors.email">Enter a valid e-mail address</div>
     </mat-error>
   </mat-form-field>
 

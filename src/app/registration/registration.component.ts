@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { catchError, finalize, tap } from 'rxjs/operators';
 import { comparePasswordsValidator, passwordGroupValidators } from '../validators/password-group-validators';
 import { passwordValidator } from '../validators/password-validator';
+import { requiredValidator } from '../validators/required-validator';
 import { RegistrationService } from './registration.service';
 
 @Component({
@@ -15,11 +16,11 @@ import { RegistrationService } from './registration.service';
 export class RegistrationComponent {
   registrationForm = this.fb.group(
     {
-      firstName: ['', [Validators.required, Validators.maxLength(256)]],
-      lastName: ['', [Validators.required, Validators.maxLength(256)]],
-      email: ['', [Validators.required, Validators.maxLength(256), Validators.email]],
+      firstName: ['', [requiredValidator(), Validators.maxLength(256)]],
+      lastName: ['', [requiredValidator(), Validators.maxLength(256)]],
+      email: ['', [requiredValidator(), Validators.maxLength(256), Validators.email]],
       password: ['', [passwordValidator()]],
-      confirmPassword: ['', Validators.required],
+      confirmPassword: [''],
     },
     { validators: [passwordGroupValidators, comparePasswordsValidator] }
   );

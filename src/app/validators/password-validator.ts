@@ -10,13 +10,6 @@ export function passwordValidator(): ValidatorFn {
     // Default value
     const value = (control.value || '') as string;
 
-    // Required validation
-    if (value === '') {
-      return {
-        required: { value: control.value },
-      };
-    }
-
     // Base regex: ^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$
     // https://stackoverflow.com/a/21456918/1087768
     const regex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])[A-Za-z\\d@$!%*?&]{8,64}$');

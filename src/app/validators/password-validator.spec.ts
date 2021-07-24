@@ -7,12 +7,6 @@ describe('passwordValidator', () => {
     expect(() => validator(null)).toThrowError('control cannot be null');
   });
 
-  it('should return validation error if control.value is null or empty string', () => {
-    const validator = passwordValidator();
-    const control = new FormControl();
-    expect(validator(control)).toEqual({ required: { value: control.value } });
-  });
-
   it(`should return "regex" validation error if the value doesn't meet the criteria`, () => {
     const validator = passwordValidator();
     const control = new FormControl();
