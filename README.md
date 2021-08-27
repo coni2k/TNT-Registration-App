@@ -22,13 +22,13 @@ Here are [the details of the assignment](https://github.com/coni2k/TNT-Registrat
 
 ## Test & Build
 
-- The application contains 19 unit tests. To run them, execute the following command: `npm test`
+- The application contains 18 unit tests. To run them, execute the following command: `npm test`
 - To create a production build, execute the following command: `ng build`
 
 ## Remarks
 
 - I added "compare passwords" and "maxLength" validations as a bonus.
-- I wrote 19 unit tests, mainly for the validations. I didn't add any "registration form" and "registration service" tests since I don't think they would've added value for this assignment.
+- I wrote 18 unit tests, mainly for the validations. I didn't add any "registration form" and "registration service" tests since I don't think they would've added value for this assignment.
 - About the email validation, I used the default email validator of Angular, which should be enough. In a real-life scenario, the back-end would send a verification email for an actual confirmation.
 
 ## Further help
