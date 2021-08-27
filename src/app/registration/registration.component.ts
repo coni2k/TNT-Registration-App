@@ -4,7 +4,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { catchError, finalize, tap } from 'rxjs/operators';
 import { comparePasswordsValidator, passwordGroupValidators } from '../validators/password-group-validators';
-import { passwordValidator } from '../validators/password-validator';
 import { requiredValidator } from '../validators/required-validator';
 import { RegistrationService } from './registration.service';
 
@@ -19,7 +18,7 @@ export class RegistrationComponent {
       firstName: ['', [requiredValidator(), Validators.maxLength(256)]],
       lastName: ['', [requiredValidator(), Validators.maxLength(256)]],
       email: ['', [requiredValidator(), Validators.maxLength(256), Validators.email]],
-      password: ['', [passwordValidator()]],
+      password: ['', [Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])[A-Za-z\\d@$!%*?&]{8,64}$')]],
       confirmPassword: [''],
     },
     { validators: [passwordGroupValidators, comparePasswordsValidator] }
