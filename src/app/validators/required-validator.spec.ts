@@ -19,7 +19,7 @@ describe('requiredValidator', () => {
     control.setValue('');
     expect(validator(control)).toEqual({ required: { value: control.value } });
 
-    // Whitepsace
+    // Whitespace
     control.setValue(' ');
     expect(validator(control)).toEqual({ required: { value: control.value } });
   });
