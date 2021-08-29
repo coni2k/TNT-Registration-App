@@ -1,20 +1,20 @@
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { comparePasswordsValidator, passwordGroupValidators } from './password-group-validators';
+import { comparePasswordsValidator, strongPasswordValidator } from './password-group-validators';
 
 describe('password group validators', () => {
   describe('strongPasswordValidator', () => {
     it('should throw error if group argument is null', () => {
-      expect(() => passwordGroupValidators(null)).toThrowError('group cannot be null');
+      expect(() => strongPasswordValidator(null)).toThrowError('group cannot be null');
     });
 
-    it(`should throw error if th group doesn't have the required controls`, () => {
+    it(`should throw error if the group doesn't have the required controls`, () => {
       const group = new FormGroup({});
-      expect(() => passwordGroupValidators(group)).toThrowError(
+      expect(() => strongPasswordValidator(group)).toThrowError(
         'group must have "firstName", "lastName" and "password" controls'
       );
     });
 
-    it(`should return "strongPassword" validation error, if password contains firstName or lastName`, () => {
+    it(`should return "invalid" if the password contains first or last name or doesn't meet the regex criteria`, () => {
       const fb = new FormBuilder();
       const group = fb.group({
         firstName: [],
@@ -23,8 +23,8 @@ describe('password group validators', () => {
       });
 
       // With default values (null)
-      let result = passwordGroupValidators(group);
-      expect(result).toEqual({ strongPassword: true });
+      let result = strongPasswordValidator(group);
+      expect(result).toEqual({ invalid: true });
 
       // With empty values
       const firstName = group.get('firstName');
@@ -35,35 +35,65 @@ describe('password group validators', () => {
       lastName.setValue('');
       password.setValue('');
 
-      result = passwordGroupValidators(group);
-      expect(result).toEqual({ strongPassword: true });
+      result = strongPasswordValidator(group);
+      expect(result).toEqual({ invalid: true });
 
       // First name is different, last name is the same
       firstName.setValue('first');
       lastName.setValue('last');
       password.setValue('last');
 
-      result = passwordGroupValidators(group);
-      expect(result).toEqual({ strongPassword: true });
+      result = strongPasswordValidator(group);
+      expect(result).toEqual({ invalid: true });
 
       // Last name is different, first name is the same
       firstName.setValue('first');
       lastName.setValue('last');
       password.setValue('first');
 
-      result = passwordGroupValidators(group);
-      expect(result).toEqual({ strongPassword: true });
+      result = strongPasswordValidator(group);
+      expect(result).toEqual({ invalid: true });
+
+      // 7 characters
+      password.setValue('1234567');
+      result = strongPasswordValidator(group);
+      expect(result).toEqual({ invalid: true });
+
+      // 65 characters
+      password.setValue('12345678901234567890123456789012345678901234567890123456789012345');
+      result = strongPasswordValidator(group);
+      expect(result).toEqual({ invalid: true });
+
+      // 8 characters but only numbers
+      password.setValue('12345678');
+      result = strongPasswordValidator(group);
+      expect(result).toEqual({ invalid: true });
+
+      // 8 characters but only numbers & one lowercase
+      password.setValue('1234567a');
+      result = strongPasswordValidator(group);
+      expect(result).toEqual({ invalid: true });
+
+      // 8 characters but only numbers & one uppercase
+      password.setValue('1234567A');
+      result = strongPasswordValidator(group);
+      expect(result).toEqual({ invalid: true });
+
+      // 8 characters & one lowercase & one uppercase, but contains an invalid special character
+      password.setValue('Aa+12345');
+      result = strongPasswordValidator(group);
+      expect(result).toEqual({ invalid: true });
     });
 
-    it(`should return null, if the password is different than both first name and last name`, () => {
+    it(`should return null if the password doesn't contain first or last name and meets the regex criteria`, () => {
       const fb = new FormBuilder();
       const group = fb.group({
         firstName: ['first'],
         lastName: ['last'],
-        password: ['pass'],
+        password: ['Aa@$!%*?&0123456789'],
       });
 
-      const result = passwordGroupValidators(group);
+      const result = strongPasswordValidator(group);
       expect(result).toBeNull();
     });
   });
@@ -73,14 +103,14 @@ describe('password group validators', () => {
       expect(() => comparePasswordsValidator(null)).toThrowError('group cannot be null');
     });
 
-    it(`should throw error if th group doesn't have the required controls`, () => {
+    it(`should throw error if the group doesn't have the required controls`, () => {
       const group = new FormGroup({});
       expect(() => comparePasswordsValidator(group)).toThrowError(
         'group must have "password" and "confirmPassword" controls'
       );
     });
 
-    it(`should return "comparePasswords" validation error if passwords don't match`, () => {
+    it(`should return "invalid" if passwords don't match`, () => {
       const fb = new FormBuilder();
       const group = fb.group({
         password: ['password'],
@@ -88,7 +118,7 @@ describe('password group validators', () => {
       });
 
       const result = comparePasswordsValidator(group);
-      expect(result).toEqual({ comparePasswords: true });
+      expect(result).toEqual({ invalid: true });
     });
 
     it(`should return null if passwords match`, () => {

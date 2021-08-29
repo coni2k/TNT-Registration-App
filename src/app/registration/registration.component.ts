@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { catchError, finalize, tap } from 'rxjs/operators';
-import { comparePasswordsValidator, passwordGroupValidators } from '../validators/password-group-validators';
+import { comparePasswordsValidator, strongPasswordValidator } from '../validators/password-group-validators';
 import { requiredValidator } from '../validators/required-validator';
 import { RegistrationService } from './registration.service';
 
@@ -18,10 +18,10 @@ export class RegistrationComponent {
       firstName: ['', [requiredValidator(), Validators.maxLength(256)]],
       lastName: ['', [requiredValidator(), Validators.maxLength(256)]],
       email: ['', [requiredValidator(), Validators.maxLength(256), Validators.email]],
-      password: ['', [Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])[A-Za-z\\d@$!%*?&]{8,64}$')]],
+      password: [''],
       confirmPassword: [''],
     },
-    { validators: [passwordGroupValidators, comparePasswordsValidator] }
+    { validators: [strongPasswordValidator, comparePasswordsValidator] }
   );
   submitting = false;
 
