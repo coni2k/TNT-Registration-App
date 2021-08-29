@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  registerUrl: 'https://demo-api.now.sh/users',
 };
 
 /*

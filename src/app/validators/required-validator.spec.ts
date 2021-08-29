@@ -13,15 +13,15 @@ describe('requiredValidator', () => {
 
     // Null
     control.setValue(null);
-    expect(validator(control)).toEqual({ required: { value: control.value } });
+    expect(validator(control)).toEqual({ required: true });
 
     // Empty
     control.setValue('');
-    expect(validator(control)).toEqual({ required: { value: control.value } });
+    expect(validator(control)).toEqual({ required: true });
 
     // Whitespace
     control.setValue(' ');
-    expect(validator(control)).toEqual({ required: { value: control.value } });
+    expect(validator(control)).toEqual({ required: true });
   });
 
   it(`should return null if the value meets all the criteria`, () => {
