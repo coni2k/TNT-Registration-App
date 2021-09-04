@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { catchError, finalize, tap } from 'rxjs/operators';
+import { catchError, finalize } from 'rxjs/operators';
 import { comparePasswordsValidator, strongPasswordValidator } from '../validators/password-group-validators';
 import { requiredValidator } from '../validators/required-validator';
 import { RegistrationService } from './registration.service';
@@ -57,9 +57,6 @@ export class RegistrationComponent {
     this.registrationService
       .register(this.firstName.value, this.lastName.value, this.email.value, this.password.value)
       .pipe(
-        tap((response) => {
-          this.router.navigate(['completed']);
-        }),
         catchError((err) => {
           this.snackBar.open('Something went wrong, please try again!', 'Dismiss', {
             duration: 5000,
@@ -70,6 +67,8 @@ export class RegistrationComponent {
           this.submitting = false;
         })
       )
-      .subscribe();
+      .subscribe(() => {
+        this.router.navigate(['completed']);
+      });
   }
 }
